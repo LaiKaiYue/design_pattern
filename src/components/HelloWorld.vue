@@ -1,12 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h3>里氏替換原則 | Liskov Substitution Principle</h3>
-    <p>
-      里氏替換原則主要在於子類別可以擴充套件父類別的功能，<br />
-      但不改變父類別原有的功能。就像老鷹跟企鵝都是鳥，老鷹會飛但企鵝不會。<br />
-      但企鵝不能去更改鳥類內的方法，只好經由其他設計達成目的。
-    </p>
+    <router-link to="/LSP">
+      <h3>里氏替換原則 | Liskov Substitution Principle</h3>
+    </router-link>
   </div>
 </template>
 
