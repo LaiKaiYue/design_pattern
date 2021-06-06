@@ -1,43 +1,44 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h3>里氏替換原則 | Liskov Substitution Principle</h3>
     <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+      里氏替換原則主要在於子類別可以擴充套件父類別的功能，<br />
+      但不改變父類別原有的功能。就像老鷹跟企鵝都是鳥，老鷹會飛但企鵝不會。<br />
+      但企鵝不能去更改鳥類內的方法，只好經由其他設計達成目的。
     </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
+
+class Bird {
+    private flySpeed = 0
+
+    public setFlySpeed (flySpeed: number): void {
+      this.flySpeed = flySpeed
+    }
+
+    public getFlyTime (distance: number): number {
+      return (distance / this.flySpeed)
+    }
+}
+
+class Eagle extends Bird {}
 
 export default defineComponent({
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  setup () {
+    onMounted(() => {
+      const eagle = new Eagle()
+      eagle.setFlySpeed(120)
+      console.log('路程300公里：')
+      console.log('老鷹花了' + eagle.getFlyTime(300) + '小時.')
+    })
   }
 })
 </script>
