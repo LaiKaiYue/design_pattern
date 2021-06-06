@@ -43,3 +43,5 @@
 
 ### Reference
 [從生活中認識 Design Pattern](https://ianjustin39.github.io/ianlife/series/%E5%BE%9E%E7%94%9F%E6%B4%BB%E4%B8%AD%E8%AA%8D%E8%AD%98-design-pattern/).
+[TypeScript handbook](https://www.typescriptlang.org/docs/handbook/classes.html)
+[Vue Composition API](https://v3.vuejs.org/api/composition-api.html#setup)
